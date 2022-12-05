@@ -1,4 +1,6 @@
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../base.dart';
 
 import '../Create/States.dart';
@@ -6,42 +8,42 @@ import 'Navigat_login.dart';
 
 class RegisterLogin extends BaseViewModel<NavigatLogin>{
 
-  void login(String email,String password)async{
-
-  }
-  //var firebaseAuth=FirebaseAuth.instance;
-
-  // void login(String email,String password)async{
-  //   String? message=null;
+  // void login(String email,String password,String realemail,String realpassword)async{
+  //
   //   try {
   //     Navigatore?.showloding();
-  //     var result=await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-  //     var user=await DateBaseUtils.readUser(result.user?.uid??"");
-  //
-  //     if(user ==null){
-  //       message='Failed to complete sign in , please try again later..';
-  //     }else{
+  //     if(realemail==email&&realpassword==password){
+  //       print('**********$realemail');
+  //       print('**********$realpassword');
+  //       print('**********$email');
+  //       print('**********$password');
   //       Navigatore?.hideloding();
-  //       Navigatore?.goToHome(user);
+  //        Navigatore?.goToHome(true);
+  //     }
   //
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == Conestant.USERNOTFOUND) {
-  //       message='No user found for that email.';
-  //     } else if (e.code == Conestant.WRONGPASS) {
-  //       message='Wrong password provided for that user.';
-  //     }
-  //     if (e.code == Conestant.WEAKPASSWORD) {
-  //       message='The password provided is too weak.';
-  //     } else if (e.code == Conestant.UESEDEMAIL) {
-  //       message='The account already exists for that email.';
-  //     }
-  //     Navigatore?.hideloding();
-  //     if(message !=null){
-  //       Navigatore?.showmassage(message);
-  //     }
-  //   } catch (e) {
-  //     print(e);
+  //   }catch (e) {
+  //         print(e);
   //   }
   // }
+  //var firebaseAuth=FirebaseAuth.instance;
+
+    void login(String email,String password,String realemail,String realpassword)async{
+
+    try {
+      Navigatore?.showloding();
+
+
+      if(realemail==email&&realpassword==password){
+        Navigatore?.hideloding();
+        Navigatore?.goToHome();
+
+      }else{
+
+        Navigatore?.showmassage('Failed to complete sign in , please try again later..');
+
+      }
+    } catch (e) {
+      print(e);
+    }
+   }
 }

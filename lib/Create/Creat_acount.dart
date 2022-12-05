@@ -1,4 +1,5 @@
 import 'package:cat_task/Create/registar_model.dart';
+import 'package:cat_task/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,7 @@ import '../../base.dart';
 
 import '../Login_Screen/Login.dart';
 
+import '../providers/user_provider.dart';
 import 'States.dart';
 
 class Createe extends StatefulWidget  {
@@ -30,12 +32,13 @@ class _CreateState extends BaseState<Createe,RegistarViweModel> implements State
   var passwordcontroller = TextEditingController();
 
 //RegistarViweModel registarViweModel=RegistarViweModel();
-
+//late UserProvider provider;
 @override
   void initState() {
     // TODO: implement initState
     super.initState();
     viewModel.Navigatore=this;
+
   }
 
   @override
@@ -134,7 +137,7 @@ class _CreateState extends BaseState<Createe,RegistarViweModel> implements State
               },
             ),
             ElevatedButton(onPressed: (){
-              //CreateAccount();
+              CreateAccount();
             }, child: Text('Create Acount',style: TextStyle(color: Colors.black),)),
             InkWell(
               onTap: (){
@@ -166,13 +169,13 @@ class _CreateState extends BaseState<Createe,RegistarViweModel> implements State
     return RegistarViweModel();
   }
 
-  // @override
-  // void goToHome(MyUser user) {
-  //   var userProvider=Provider.of<UserProvider>(context);
-  //   userProvider.user=user;
-  //   print('_____________________________________________________________________________________________');
-  //   Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-  // }
+  @override
+  void goToHome() {
+    //var userProvider=Provider.of<UserProvider>(context);
+    //userProvider.user=user;
+    print('_____________________________________________________________________________________________');
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+  }
 
 
 }

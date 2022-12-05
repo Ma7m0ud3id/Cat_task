@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Create/Creat_acount.dart';
 import '../Create/States.dart';
 
 import '../base.dart';
+import '../home/home.dart';
+import '../providers/user_provider.dart';
 import 'Navigat_login.dart';
 import 'Register_login.dart';
 
@@ -16,12 +19,21 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends BaseState<LoginScreen, RegisterLogin>
     implements NavigatLogin {
+  late String email;
+  late String password;
   var emailcontroller = TextEditingController();
   var formKey = GlobalKey<FormState>();
   var passwordcontroller = TextEditingController();
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.Navigatore = this;
+    WidgetsBinding.instance.addPostFrameCallback((____)=>Sherdeprif() );
+  }
   @override
   Widget build(BuildContext context) {
+
     return ChangeNotifierProvider(
         create: (c) => viewModel,
         child: Stack(children: [
@@ -82,7 +94,7 @@ class _LoginScreenState extends BaseState<LoginScreen, RegisterLogin>
                             },
                           ),
                           ElevatedButton(onPressed: (){
-                           // Recive();
+                            Recive();
                           }, child: Text('Login',style: TextStyle(color: Colors.black),)),
                           InkWell(
                               onTap: (){
@@ -95,27 +107,35 @@ class _LoginScreenState extends BaseState<LoginScreen, RegisterLogin>
         ]));
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    viewModel.Navigatore = this;
-  }
+
 
   @override
   RegisterLogin intichange() {
     return RegisterLogin();
   }
-  // void Recive(){
-  //   if (formKey.currentState!.validate()) {
-  //     viewModel.login(emailcontroller.text, passwordcontroller.text);
-  //   }
-  // }
+  void Recive(){
+    if (formKey.currentState!.validate()) {
+      viewModel.login(emailcontroller.text, passwordcontroller.text,email,password);
+    }
+  }
+  void Sherdeprif()async{
 
-  // @override
-  // void goToHome(MyUser user) {
-  //   var userProvider=Provider.of<UserProvider>(context,listen: false);
-  //   userProvider.user=user;
-  //   Navigator.pushReplacementNamed(context,HomeScreen.routeName);
-  // }
+    // var pro=Provider.of<UserProvider>(context, listen: false);
+    final prefs = await SharedPreferences.getInstance();
+     email = prefs.getString('email')??'';
+     password = prefs.getString('password')??'';
+    String username = prefs.getString('username')??'';
+    String fname = prefs.getString('fName')??'';
+    String lname = prefs.getString('lName')??'';
+    // pro.UserChange(email, password, fname, lname, username);
+  }
+
+
+
+  @override
+  void goToHome() {
+    // var userProvider=Provider.of<UserProvider>(context,listen: false);
+    // userProvider.user=user;
+    Navigator.pushReplacementNamed(context,HomeScreen.routeName);
+  }
 }
