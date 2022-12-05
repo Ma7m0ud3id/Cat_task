@@ -40,7 +40,7 @@ class _HomeScreenState extends BaseState<HomeScreen,HomeViewModel> implements Ho
           appBar: AppBar(
             elevation: 0.0,
             backgroundColor: Colors.transparent,
-            title: Text('Chat App'),
+            title: Text('Cat_Task'),
             centerTitle: true,
           ),
           floatingActionButton: FloatingActionButton(
