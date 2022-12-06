@@ -28,7 +28,6 @@ class RegisterLogin extends BaseViewModel<NavigatLogin>{
   //var firebaseAuth=FirebaseAuth.instance;
 
     void login(String email,String password,String realemail,String realpassword)async{
-
     try {
       Navigatore?.showloding();
 

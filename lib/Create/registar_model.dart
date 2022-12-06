@@ -8,10 +8,6 @@ class RegistarViweModel extends BaseViewModel<States>{
 
 
   void CreateAccount(String email,String password,String fName,String lName,String username)async{
-
-
-
-
     try {
       Navigatore?.showloding();
       final prefs = await SharedPreferences.getInstance();
@@ -20,6 +16,7 @@ class RegistarViweModel extends BaseViewModel<States>{
       await prefs.setString('username', username);
       await prefs.setString('fName', fName);
       await prefs.setString('lName', lName);
+
         Navigatore?.hideloding();
         Navigatore?.goToHome();
 

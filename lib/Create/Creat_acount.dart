@@ -171,8 +171,8 @@ class _CreateState extends BaseState<Createe,RegistarViweModel> implements State
 
   @override
   void goToHome() {
-    //var userProvider=Provider.of<UserProvider>(context);
-    //userProvider.user=user;
+    // var userProvider=Provider.of<UserProvider>(context, listen: false);
+    // userProvider.cheak= cheakk;
     print('_____________________________________________________________________________________________');
     Navigator.pushReplacementNamed(context, HomeScreen.routeName);
   }
